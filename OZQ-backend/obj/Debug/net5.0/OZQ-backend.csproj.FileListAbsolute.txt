@@ -1,0 +1,7 @@
+G:\jayod\api\OZQ-cart\OZQ-backend\obj\Debug\net5.0\OZQ-backend.csproj.AssemblyReference.cache
+G:\jayod\api\OZQ-cart\OZQ-backend\obj\Debug\net5.0\OZQ-backend.GeneratedMSBuildEditorConfig.editorconfig
+G:\jayod\api\OZQ-cart\OZQ-backend\obj\Debug\net5.0\OZQ-backend.AssemblyInfoInputs.cache
+G:\jayod\api\OZQ-cart\OZQ-backend\obj\Debug\net5.0\OZQ-backend.AssemblyInfo.cs
+G:\jayod\api\OZQ-cart\OZQ-backend\obj\Debug\net5.0\OZQ-backend.csproj.CoreCompileInputs.cache
+G:\jayod\api\OZQ-cart\OZQ-backend\obj\Debug\net5.0\OZQ-backend.MvcApplicationPartsAssemblyInfo.cs
+G:\jayod\api\OZQ-cart\OZQ-backend\obj\Debug\net5.0\OZQ-backend.MvcApplicationPartsAssemblyInfo.cache
