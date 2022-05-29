@@ -14,6 +14,12 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.Serializers;
+using MongoDB.Driver;
+using ozq_backend.Repositories;
+using ozq_backend.Settings;
 
 namespace OZQ_backend
 {
@@ -29,6 +35,24 @@ namespace OZQ_backend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
+            BsonSerializer.RegisterSerializer(new DateTimeOffsetSerializer(BsonType.String));
+            var mongoDbSettings = Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
+
+            // parse the appsettings.json and retrieves MongoDb host and port. use that to create a new connection string 
+            // and return a MongoClient.
+            services.AddSingleton<IMongoClient>(serviceProvider => {
+                return new MongoClient(mongoDbSettings.connectionString);
+            });
+
+            // registering repositories and services
+            services.AddSingleton<IItemsRepository, MongoDbItemsRepository>();
+            services.AddSingleton<IOrderRespository, MongoDbOrderRepository>();
+            services.AddSingleton<IUserRepository, MongoDbUserRepository>();
+            services.AddControllers(options => {
+                options.SuppressAsyncSuffixInActionNames = false;
+            });
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -43,6 +67,8 @@ namespace OZQ_backend
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
                     };
                 });
+
+            
             services.AddMvc();
             services.AddControllers();
             services.AddSwaggerGen(c =>

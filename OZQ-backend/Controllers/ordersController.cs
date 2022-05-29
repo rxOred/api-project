@@ -62,7 +62,7 @@ namespace ozq_backend.Controllers
             var user = GetUserFromToken();
             if (user is null) 
             {
-                return Forbid("Unauthorized users cannot perform this action");
+                return Unauthorized("Unauthorized users cannot perform this action");
             }
             Order order = new Order()
             {
@@ -84,7 +84,7 @@ namespace ozq_backend.Controllers
             var user = GetUserFromToken();
             if (user is null)
             {
-                return Forbid("Unauthorized users cannot perform this action");
+                return Unauthorized("Unauthorized users cannot perform this action");
             }
             var orders = (await repository.GetOrdersAsync()).Where(
                 order => order.UserId == user.Id).Select(user => user.AsDto());

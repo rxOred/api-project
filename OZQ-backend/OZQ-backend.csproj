@@ -1,8 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>OZQ_backend</RootNamespace>
+    <UserSecretsId>68b8c3dc-b4b8-458c-ae02-0d450a930e06</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
