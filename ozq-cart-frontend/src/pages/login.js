@@ -1,47 +1,69 @@
-import React, {useState} from "react";
+import axios from "axios";
+import React, {useEffect, useState} from "react";
 import { Container, Form, Button, Alert } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { api } from "../api/api";
+import {  useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [is_submitted, setSubmitted] = useState(false);
+    const [is_logged, setLoggeed] = useState(false);
     const [is_error, setError] = useState(false);
+
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (is_logged) {
+            navigate("/profile");
+        }
+    })
 
     const handleUsername = (e) => {
         setUsername(e.target.value);
-        setSubmitted(false);
+        setLoggeed(false);
     }
 
     const handlePassword = (e) => {
         setPassword(e.target.value);
-        setSubmitted(false);
+        setLoggeed(false);
     }
 
-    
     const handleSubmit = (e) => {
         e.preventDefault();
         if (username === '' || password === '') {
             setError(true);
         } else {
-            setSubmitted(true);
-            setError(false);
+            api.post('/login', {
+                Username: username, 
+                Password: password
+            })
+            .then(res => {
+                if (res.status === 200) {
+                    const token = res.data;
+                    localStorage.setItem('token', token);
+                    setLoggeed(true);
+                    setError(false);
+                } else {
+                    setLoggeed(false);
+                    setError(true);
+                }
+            })
         }
     }
 
-        // Showing success message
+    // Showing success message
     const successMessage = () => {
         return (
         <div
             className="success"
             style={{
-            display: is_submitted ? '' : 'none',
+            display: is_logged ? '' : 'none',
             }}>
-            <Alert key="success" variant="success">User {username} successfully registered!!</Alert>
+            <Alert key="success" variant="success">Login successful</Alert>
         </div>
         );
     };
- 
+
     // Showing error message if error is true
     const errorMessage = () => {
         return (
@@ -50,10 +72,14 @@ const Login = () => {
             style={{
             display: is_error ? '' : 'none',
             }}>
-            <Alert key="danger" variant="danger">Please enter all the fields</Alert>
+            <Alert key="danger" variant="danger">Login failed </Alert>
         </div>
         );
     };
+
+    useEffect(() => {
+
+    }, [username, password])
 
     return (
         <Container style={{width: '30%'}}>
