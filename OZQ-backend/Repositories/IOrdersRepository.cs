@@ -8,6 +8,6 @@ namespace ozq_backend.Repositories
     public interface IOrderRespository {
         Task<IEnumerable<Order>> GetOrdersAsync();
         Task<Order> GetOrderAsync(Guid id);
-        System.Threading.Tasks.Task CreateOrder(Order order);
+        System.Threading.Tasks.Task CreateOrderAsync(Order order);
     }
 }

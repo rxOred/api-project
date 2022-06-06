@@ -20,7 +20,7 @@ namespace ozq_backend.Repositories
             this.ordersCollection = database.GetCollection<Order>(collectionName);
         }
 
-        public async Task CreateOrder(Order order)
+        public async Task CreateOrderAsync(Order order)
         {
             await ordersCollection.InsertOneAsync(order);
         }

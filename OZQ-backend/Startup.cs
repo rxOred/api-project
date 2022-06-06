@@ -68,7 +68,14 @@ namespace OZQ_backend
                     };
                 });
 
-            
+            services.AddCors();
+            /*
+            services.AddCors(options => options.AddPolicy("ApiCorsPolicy", builder =>
+            {
+                builder.WithOrigins("http://localhost:3000").AllowAnyMethod().AllowAnyHeader();
+            }));
+            */
+
             services.AddMvc();
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -94,7 +101,16 @@ namespace OZQ_backend
             app.UseAuthentication();
 
             app.UseAuthorization();
-
+            
+            //app.UseCors("ApiCorsPolicy");
+            
+            app.UseCors(builder => builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+            );
+            //app.UseMvc();
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

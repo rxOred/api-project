@@ -35,5 +35,10 @@ namespace ozq_backend.Repositories
             var filter = filterBuilder.Eq(item => item.Id, item.Id);
             await itemsCollection.ReplaceOneAsync(filter, item);
         }
+
+        public async Task CreateItemAsync(Item item)
+        {
+            await itemsCollection.InsertOneAsync(item);
+        }
     }
 }

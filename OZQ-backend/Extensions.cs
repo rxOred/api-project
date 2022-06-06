@@ -13,7 +13,9 @@ namespace ozq_backend
                 Name = item.Name,
                 Category = item.Category,
                 Count = item.Count,
-                Price = item.Price
+                Price = item.Price,
+                Image = item.Image,
+                Description = item.Description
             };
         }
 

@@ -8,9 +8,11 @@ using ozq_backend.Dtos;
 using System;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 
 namespace ozq_backend.Controllers
 {
+    //[EnableCors]
     [ApiController]
     [Route("orders")]
     public class OrdersController : ControllerBase
@@ -20,6 +22,15 @@ namespace ozq_backend.Controllers
         public OrdersController(IOrderRespository repository)
         {
             this.repository = repository;
+        }
+
+        // GET /orders
+        [Authorize]
+        [HttpGet]
+        public async Task<IEnumerable<OrderDto>> GetOrders()
+        {
+            var orders = (await repository.GetOrdersAsync()).Select(order => order.AsDto());
+            return orders;
         }
 
         // GET /orders/{id}
@@ -71,12 +82,12 @@ namespace ozq_backend.Controllers
                 OrderDate = DateTimeOffset.UtcNow,
                 Total = dto.Total
             };
-            await repository.CreateOrder(order);
+            await repository.CreateOrderAsync(order);
             return CreatedAtAction(nameof(GetOrder), new { id = order.Id }, order.AsDto());
         }
 
-        // requires authorization to perform this task
-        // GET /user/orders
+        // GET /orders/user
+        //[EnableCors]
         [Authorize]
         [HttpGet("user")]
         public async Task<ActionResult<IEnumerable<OrderDto>>> GetUserOrders()

@@ -9,5 +9,7 @@ namespace ozq_backend.Entities
         public string Category { get; init; }
         public int Count { get; set; }
         public int Price { get; init; }
+        public string Image { get; init; }
+        public string Description { get; init; }
     }
 }

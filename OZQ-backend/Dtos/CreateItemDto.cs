@@ -1,15 +1,21 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace ozq_backend.Dtos
 {
-    public record ItemDto
+    public record CreateItemDto
     {
-        public Guid Id { get; init; }
+        [Required]
         public string Name { get; init; }
+        [Required]
         public string Category { get; init; }
+        [Required]
         public int Count { get; set; }
+        [Required]
         public int Price { get; init; }
+        [Required]
         public string Image { get; init; }
+        [Required]
         public string Description { get; init; }
     }
 }

@@ -11,5 +11,6 @@ namespace ozq_backend.Repositories
         Task<Item> GetItemAsync(Guid id);
         Task<IEnumerable<Item>> GetItemsAsync();
         System.Threading.Tasks.Task UpdateItemAsync(Item item);
+        System.Threading.Tasks.Task CreateItemAsync(Item item);
     }
 }

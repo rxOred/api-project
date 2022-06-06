@@ -7,9 +7,11 @@ using ozq_backend.Dtos;
 using ozq_backend.Repositories;
 using ozq_backend.Entities;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 
 namespace ozq_backend.Controllers
 {
+    [EnableCors]
     [ApiController]
     [Route("items")]
     public class ItemsController : ControllerBase
@@ -26,10 +28,6 @@ namespace ozq_backend.Controllers
         public async Task<IEnumerable<ItemDto>> GetItems()
         {
             var items = (await repository.GetItemsAsync()).Select(item => item.AsDto());
-            if (items is null)
-            {
-                return null;
-            }
             return items;
         }
 
@@ -43,6 +41,24 @@ namespace ozq_backend.Controllers
                 return NotFound();
             }
             return item.AsDto();
+        }
+
+        // POST /items
+        [HttpPost]
+        public async Task<ActionResult<ItemDto>> CreateItem(CreateItemDto dto)
+        {
+            Item item = new Item()
+            {
+                Id = Guid.NewGuid(),
+                Name = dto.Name,
+                Price = dto.Price,
+                Count = dto.Count,
+                Category = dto.Category,
+                Image = dto.Image,
+                Description = dto.Description
+            };
+            await repository.CreateItemAsync(item);
+            return CreatedAtAction(nameof(GetItem), new { id = item.Id }, item.AsDto());
         }
 
         // requires authorization to perform this action

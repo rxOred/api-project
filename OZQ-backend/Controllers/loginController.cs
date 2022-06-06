@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -14,6 +15,7 @@ using System.Threading.Tasks;
 
 namespace ozq_backend.Controllers
 {
+    //[EnableCors]
     [ApiController]
     [Route("login")]
     public class LoginController : ControllerBase
