@@ -1,10 +1,11 @@
 import userEvent from "@testing-library/user-event";
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import { Container, Figure, ListGroup, Card, Table } from "react-bootstrap";
 import { api } from "../api/api";
 import {  useNavigate } from 'react-router-dom';
 import jwt from "jwt-decode";
-import { Tab } from "bootstrap";
+import profile from '../assets/img/pp.png';
+import { Button } from "bootstrap";
 
 function is_logged() { 
     if (localStorage.getItem('token')) {
@@ -15,41 +16,50 @@ function is_logged() {
 
 const Profile = () => {
     const navigate = useNavigate();
-
+    var name = '';
+    var email = '';
+    var contact = '';
+    const [orderData, setOrderData] = useState([]);
+    
     if (!is_logged()) {
+        console.log('user not logged');
         navigate("/login");
     }
-
-    var token = localStorage.getItem('token')
-    var userData = jwt(token);
-    var name = userData['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname'];
-    var email = userData['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'];
-    var contact =userData['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/mobilephone'];
-    console.log(name);
-    console.log(email);
-    console.log(contact);
-
-    var orderData;
-    api.get(
-        '/orders/user',
-        {headers: {"Authorization" : `Bearer ${token}`} }
-    )
-    .then(res => {
-        if (res.status === 200) {
-            orderData = res.data;
+    else {
+        var token = localStorage.getItem('token')
+        var userData = jwt(token);
+        name = userData['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname'];
+        email = userData['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'];
+        contact = userData['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/mobilephone'];
+    }
+    useEffect(() => {
+        if (is_logged()) {
+            console.log(token);
+            api.get(
+                '/orders/user',
+                {headers: {"Authorization" : `Bearer ${token}`} }
+            )
+            .then(res => {
+                if (res.status === 200) {
+                    setOrderData(res.data);
+                    console.log(orderData);
+                } else {
+                    console.log('errorrrr');
+                }
+            })
         }
-    })
+    }, [])
 
     return (
         <Container responsiv="md">
             <Container>
-                <div style={{'width': '50%'}}>
+                <div style={{'float': 'left', 'width': '50%'}}>
                     <Figure>
                         <Figure.Image
                             width={171}
                             height={180}
                             alt="171x180"
-                            src="/assets/img/pp.png"
+                            src={profile}
                         />
                         </Figure>
                 </div>
@@ -65,48 +75,26 @@ const Profile = () => {
                 </div>
             </Container>
             <Container responsive="md">
-            <Table responsive="sm" className="mt-4 mb-4">
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Table heading</th>
-                    <th>Table heading</th>
-                    <th>Table heading</th>
-                    <th>Table heading</th>
-                    <th>Table heading</th>
-                    <th>Table heading</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                </tr>
-                </tbody>
-            </Table>
+                <Table>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>User Id</th>
+                            <th>Total</th>
+                            <th>Order Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {orderData.map((data) => (
+                            <tr>
+                                <td>{data.id}</td>
+                                <td>{data.userId}</td>
+                                <td>{data.total}</td>
+                                <td>{data.orderDate}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </Table>
             </Container>
         </Container>
     )

@@ -1,14 +1,16 @@
 import React from "react";
-  
+import { Container } from "react-bootstrap";
+
 const About = () => {
     return (
-        <main>    
-            <div>
-                <h3>About</h3>
-                <p>OZQ shopping is the Sri Lanka's largest online shopping store. With over 1million customers, </p>
-            </div>
-        </main>
+        <Container>
+            <h3 className="fs-4 mt-4 mb-4 text-center">About us</h3>
+            <p>
+                OZQ shopping is a shopping company with over 1 million customers worldwide. <br/>
+                With sellers from around world, our inventory is a home to thousands of rare items from all cultures of earth<br/>
+            </p>
+        </Container>
     );
 };
-  
+
 export default About;

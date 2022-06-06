@@ -10,13 +10,7 @@ const Login = () => {
     const [is_logged, setLoggeed] = useState(false);
     const [is_error, setError] = useState(false);
 
-    const navigate = useNavigate()
-
-    useEffect(() => {
-        if (is_logged) {
-            navigate("/profile");
-        }
-    })
+    var navigate = useNavigate();
 
     const handleUsername = (e) => {
         setUsername(e.target.value);
@@ -43,6 +37,7 @@ const Login = () => {
                     localStorage.setItem('token', token);
                     setLoggeed(true);
                     setError(false);
+                    navigate('/profile')
                 } else {
                     setLoggeed(false);
                     setError(true);
@@ -76,10 +71,6 @@ const Login = () => {
         </div>
         );
     };
-
-    useEffect(() => {
-
-    }, [username, password])
 
     return (
         <Container style={{width: '30%'}}>

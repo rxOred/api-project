@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { ReactDOM } from "react";
+import { api } from "../api/api";
 import { Container, Form, Button, Alert } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
     const [username, setUsername] = useState('');
@@ -10,6 +11,8 @@ const Register = () => {
 
     const [is_submitted, setSubmitted] = useState(false);
     const [is_error, setError] = useState(false);
+
+    var navigate = useNavigate();
 
     const handleUsername = (e) => {
         console.debug('username changed ' + e.target.value);
@@ -41,7 +44,18 @@ const Register = () => {
         if (username === '' || contact === '' || email === '' || password === '') {
             setError(true);
         } else {
-            setSubmitted(true);
+            api.post('/register', {
+                Username: username,
+                Contact: contact,
+                Email: email, 
+                Password: password
+            })
+            .then(res => {
+                if (res.status === 200) {
+                    setSubmitted(true);
+                    navigate('/login');
+                }
+            })
             setError(false);
         }
     }

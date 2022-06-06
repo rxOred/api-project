@@ -1,12 +1,10 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import { Container, Nav, Navbar } from "react-bootstrap";
-import logo from './favicon.ico';
 import './navbar.css'
 
 const MyNavbar = () => {
     return (
-        <div className="navigation">
+        <div className="navigation mb-4">
             <Navbar bg="myBg" variant="dark" expand="lg">
                 <Container fluid>
                     <Navbar.Brand>
@@ -21,12 +19,13 @@ const MyNavbar = () => {
                             <Nav.Link href="/about">About</Nav.Link>
                         </Nav>
                         <Nav>
+                            <Nav.Link href="/profile">Profile</Nav.Link>
                             <Nav.Link href="/login">Login</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-        </div> 
+        </div>
     );
 }
 
