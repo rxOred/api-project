@@ -1,13 +1,11 @@
 using Ozq.Api.Dtos;
 using Moq;
-using System;
 using Xunit;
 using Microsoft.Extensions.Configuration;
 using System.Threading.Tasks;
 using Ozq.Api.Repositories;
 using Ozq.Api.Entities;
 using Ozq.Api.Controllers;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Ozq.UnitTests
 {

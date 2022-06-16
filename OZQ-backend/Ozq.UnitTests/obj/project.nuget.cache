@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "uDtzYuqxuBqe42L3Ga+KGkP+9Hn9VcXdGGEmLkxM/voAEeAcaXP0daDOxbjUDnRgnVCwFg411ZKPSL9Mqt1+Ag==",
+  "dgSpecHash": "elmFeuodJQY0tbvs6pDrlNjY53Ofgw7UHaqaaUSMqvdASiDe4wEHlCWe2Nv436zEgCnVqRWK57EffSYDn3WW/w==",
   "success": true,
-  "projectFilePath": "D:\\repos\\api-project\\OZQ-backend\\Ozq.UnitTests\\Ozq.UnitTests.csproj",
+  "projectFilePath": "d:\\repos\\api-project\\OZQ-backend\\Ozq.UnitTests\\Ozq.UnitTests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Me\\.nuget\\packages\\castle.core\\5.0.0\\castle.core.5.0.0.nupkg.sha512",
     "C:\\Users\\Me\\.nuget\\packages\\coverlet.collector\\1.3.0\\coverlet.collector.1.3.0.nupkg.sha512",

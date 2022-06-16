@@ -2,14 +2,7 @@ import { useEffect, useRef } from "react";
 import { Container, FormLabel } from "react-bootstrap";
 import { Table, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-/*
-function is_logged() { 
-    if (localStorage.getItem('token')) {
-        return true;
-    }
-    return false;
-}
-*/
+
 const Cart = () => {
     var itemArray = JSON.parse(localStorage.getItem('cart'));
     const checkoutButton = useRef(null);

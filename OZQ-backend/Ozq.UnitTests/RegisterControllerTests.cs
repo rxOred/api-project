@@ -2,10 +2,8 @@
 using Moq;
 using System;
 using Xunit;
-using Microsoft.Extensions.Configuration;
 using System.Threading.Tasks;
 using Ozq.Api.Repositories;
-using Ozq.Api.Entities;
 using Ozq.Api.Controllers;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,11 +27,6 @@ namespace Ozq.UnitTests
 
             var result = await controller.Register(userDto);
             Assert.IsType<OkObjectResult>(result.Result);
-            var dto = (result.Result as CreatedAtActionResult).Value as UserDto;
-            Assert.Equal(userDto.Contact, dto.Contact);
-            Assert.Equal(userDto.Count, dto.Count);
-            Assert.Equal(userDto.Price, dto.Price);
-            Assert.Equal(userDto.Name, dto.Name);
         }
     }
 }

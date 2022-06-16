@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/OZQ-backend.csproj",
+                "${workspaceFolder}/build.proj",
                 "/property:GenerateFullpaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/OZQ-backend.csproj",
+                "${workspaceFolder}/Ozq.Api/Ozq.Api.csproj",
                 "/property:GenerateFullpaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -37,7 +37,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/OZQ-backend.csproj"
+                "${workspaceFolder}/Ozq.Api/Ozq.Api.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

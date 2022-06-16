@@ -9,9 +9,9 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/bin/Debug/net5.0/OZQ-backend.dll",
+            "program": "${workspaceFolder}/Ozq.Api/bin/Debug/net5.0/Ozq.Api.dll",
             "args": [],
-            "cwd": "${workspaceFolder}",
+            "cwd": "${workspaceFolder}/Ozq.Api",
             "stopAtEntry": false,
             //"serverReadyAction": {
             //    "action": "openExternally",
@@ -21,7 +21,7 @@
                 "ASPNETCORE_ENVIRONMENT": "Development"
             },
             "sourceFileMap": {
-                "/Views": "${workspaceFolder}/Views"
+                "/Views": "${workspaceFolder}/Ozq.Api/Views"
             }
         },
         {

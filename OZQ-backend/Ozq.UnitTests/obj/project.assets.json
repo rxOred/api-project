@@ -7220,11 +7220,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\repos\\api-project\\OZQ-backend\\Ozq.UnitTests\\Ozq.UnitTests.csproj",
+      "projectUniqueName": "d:\\repos\\api-project\\OZQ-backend\\Ozq.UnitTests\\Ozq.UnitTests.csproj",
       "projectName": "Ozq.UnitTests",
-      "projectPath": "D:\\repos\\api-project\\OZQ-backend\\Ozq.UnitTests\\Ozq.UnitTests.csproj",
+      "projectPath": "d:\\repos\\api-project\\OZQ-backend\\Ozq.UnitTests\\Ozq.UnitTests.csproj",
       "packagesPath": "C:\\Users\\Me\\.nuget\\packages\\",
-      "outputPath": "D:\\repos\\api-project\\OZQ-backend\\Ozq.UnitTests\\obj\\",
+      "outputPath": "d:\\repos\\api-project\\OZQ-backend\\Ozq.UnitTests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Me\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -7241,8 +7241,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "D:\\repos\\api-project\\OZQ-backend\\Ozq.Api\\Ozq.Api.csproj": {
-              "projectPath": "D:\\repos\\api-project\\OZQ-backend\\Ozq.Api\\Ozq.Api.csproj"
+            "d:\\repos\\api-project\\OZQ-backend\\Ozq.Api\\Ozq.Api.csproj": {
+              "projectPath": "d:\\repos\\api-project\\OZQ-backend\\Ozq.Api\\Ozq.Api.csproj"
             }
           }
         }
@@ -7293,9 +7293,6 @@
         "assetTargetFallback": true,
         "warn": true,
         "frameworkReferences": {
-          "Microsoft.AspNetCore.App": {
-            "privateAssets": "none"
-          },
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
